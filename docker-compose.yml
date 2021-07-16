@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+    db:
+        container_name: postgres_db
+        image: postgres 
+        # automatic restarts the container 
+        restart: always
+        # volumes: 
+        #     - './data/db:/var/lib/postgresql/data'
+        environment: 
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        ports: 
+            - "5431:5432"
+
+
+    pgadmin:
+        container_name: pgadmin4
+        image: dpage/pgadmin4
+        # automatic restarts the container 
+        restart: always
+        # volumes: 
+        #     - ./data/pgadmin-data:/var/lib/pgadmin
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: SuperSecret
+        # pgadmin listen port 80....
+        ports: 
+            - "5050:80"
+
+# networks:
+#     app_net:
+#         ipam:
+#             driver: default
+#             config:
+#                 - subnet: "192.168.0.0/24"
+#                 -] gateway: "192.168.0.1"
