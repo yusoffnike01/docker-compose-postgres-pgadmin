@@ -1,19 +1,21 @@
-version: '3.1'
+version: '3.9'
 
 services:
     postgres:
-        container_name: postgres_db
-        image: postgres 
+        container_name: smart-toilet
+        image: postgres:12-alpine 
         # automatic restarts the container 
         restart: always
         environment: 
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
-            PGDATA: /data/postgres
+            POSTGRES_DB: tebasmart_development
+            TZ: 'GMT+8'
+            PGTZ: 'GMT+8'
         volumes: 
-            - postgres:/data/postgres
+            - postgres:/var/lib/postgresql/data
         ports: 
-            - "5431:5432"
+            - "5432:5432"
         networks:
             - postgres
 
@@ -46,7 +48,7 @@ networks:
         driver: bridge
 
 volumes:
-    datapostgres:
+    postgres:
     pgadmin:
 
 
